@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const userRoute = require('./routes/data')
 
+require('./db/db')
+
 
 app.use('api', userRoute)
 

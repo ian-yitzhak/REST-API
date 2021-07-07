@@ -6,5 +6,5 @@ mongoose.connect(
 
 	)
 .then(()=> console.log('Connected successfully'))
-.catch((err)=> console.log(err)
+.catch((err)=> console.log(err))
 
