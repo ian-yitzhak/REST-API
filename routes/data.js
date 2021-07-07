@@ -13,7 +13,16 @@ router.get('/user',async (req,res)=>{
 		res.status(500).send(err) }
 
 	})
-app.get('/user/:id', async (req,res)=>{
+router.get('/user/:id', async (req,res)=>{
+	try{
+		const person = await Person.findById(req.params.id)
+		if(!person){
+			return res.status(404).send()
+		}
+		res.status(200).send(person)
+	}catch(err){
+		res.status(500).send(err)
+	}
 
 })
 
@@ -31,12 +40,22 @@ router.post('/user', async (req,res)=>{
 		res.status(400).send(err)}
 })
 
-app.patch('/user/:id', async (req,res)=>{
+router.patch('/user/:id', async (req,res)=>{
+	let body = req.body
+	let id = req.params.id
+
+	try{
+
+		const person  = await Person.findByIdAndUpdate(id, body)
+		res.send(person)
+	}catch(err){
+		res.status(422).send(err)
+	}
 
 })
 
 
-app.delete('/user/:id', async (req,res)=>{
+router.delete('/user/:id', async (req,res)=>{
 
 })
 
