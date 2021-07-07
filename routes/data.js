@@ -56,6 +56,14 @@ router.patch('/user/:id', async (req,res)=>{
 
 
 router.delete('/user/:id', async (req,res)=>{
+	try{
+		const person = await Person.findByIdAndDelete(req.params.id)
+		if(!person){
+			res.status(404).send()
+		}res.send(person)
+	}catch(err){
+		res.status(500).send()
+	}
 
 })
 
